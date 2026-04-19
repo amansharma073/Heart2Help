@@ -1,133 +1,212 @@
 import { useParams, Link } from "react-router-dom";
+import {
+  MapPin, DollarSign, Star, CheckCircle2,
+  Clock, ArrowLeft, MessageCircle, Calendar, ShieldCheck,
+  Award, Briefcase,
+} from "lucide-react";
 import caretakers from "../data/caretakers";
+
+const catStyle = {
+  "Elderly Care": { bg: "#eff6ff", color: "#2563eb" },
+  "Child Care":   { bg: "#fdf2f8", color: "#db2777" },
+  "Pet Care":     { bg: "#f0fdf4", color: "#16a34a" },
+};
+
+/* ── Inline trust signals — replaces the boxed section ── */
+const trustSignals = (c) => [
+  { Icon: ShieldCheck, label: "Background verified",          color: "#16a34a" },
+  { Icon: Star,        label: `${c.rating} rated by families`, color: "#d97706" },
+  { Icon: Briefcase,   label: `${c.experience} experience`,    color: "#2563eb" },
+];
+
+/* ── Reusable section card ── */
+function SectionCard({ icon, title, children }) {
+  return (
+    <div className="profile-section-card">
+      <div className="profile-section-header">
+        <div className="profile-section-icon">{icon}</div>
+        <h5 className="profile-section-title">{title}</h5>
+      </div>
+      {children}
+    </div>
+  );
+}
 
 export default function Profile() {
   const { id } = useParams();
-  const caretaker = caretakers.find((c) => c.id === parseInt(id));
+  const c = caretakers.find((x) => x.id === parseInt(id));
 
-  if (!caretaker) {
-    return (
-      <div className="text-center py-5">
-        <h3>Caretaker not found</h3>
-        <Link to="/listings" className="btn btn-primary mt-3">Back to Listings</Link>
-      </div>
-    );
-  }
+  if (!c) return (
+    <div className="profile-not-found">
+      <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }}>😕</div>
+      <h3 style={{ marginBottom: ".4rem" }}>Caretaker not found</h3>
+      <p style={{ marginBottom: "1.5rem" }}>This profile doesn't exist or may have been removed.</p>
+      <Link to="/listings" className="btn-card" style={{ display: "inline-block", width: "auto", padding: ".65rem 1.75rem" }}>
+        Back to Listings
+      </Link>
+    </div>
+  );
 
-  const { name, category, skills, rating, reviews, available, image, hourlyRate, location,
-    bio, experience, schedule, reviewsList } = caretaker;
-
-  const badgeStyle = {
-    backgroundColor: available ? "#e8f5e9" : "#fce8e6",
-    color: available ? "#2e7d32" : "#c62828",
-  };
+  const cat = catStyle[c.category] || { bg: "#f1f5f9", color: "#475569" };
 
   return (
-    <div style={{ backgroundColor: "#f8faff", minHeight: "100vh" }}>
-      <div className="py-5" style={{ background: "linear-gradient(135deg, #1a2a4a, #1a73e8)" }}>
+    <div style={{ background: "var(--bg)", minHeight: "100vh" }}>
+
+      {/* ── Hero banner ── */}
+      <div className="profile-hero">
         <div className="container">
-          <Link to="/listings" className="text-white-50 text-decoration-none small">
-            ← Back to Listings
+          <Link to="/listings" className="profile-back-link">
+            <ArrowLeft size={14} /> Back to Listings
           </Link>
         </div>
       </div>
 
-      <div className="container py-5">
+      <div className="container profile-page-body">
         <div className="row g-4">
-          {/* Left: Profile Card */}
-          <div className="col-lg-4">
-            <div className="card border-0 shadow-sm rounded-4 p-4 text-center sticky-top" style={{ top: "80px" }}>
-              <img
-                src={image}
-                alt={name}
-                className="rounded-circle mx-auto mb-3"
-                style={{ width: "120px", height: "120px", objectFit: "cover", border: "4px solid #1a73e8" }}
-              />
-              <h4 className="fw-bold mb-1" style={{ color: "#1a2a4a" }}>{name}</h4>
-              <p className="text-muted small mb-2">{category}</p>
 
-              <div className="d-flex justify-content-center align-items-center gap-1 mb-2">
-                <span style={{ color: "#f4b400", fontSize: "1.1rem" }}>
-                  {"★".repeat(Math.round(rating))}
-                </span>
-                <span className="fw-semibold">{rating}</span>
-                <span className="text-muted small">({reviews} reviews)</span>
+          {/* ── Sidebar ── */}
+          <div className="col-lg-4">
+            <div className="profile-sidebar">
+
+              {/* Avatar */}
+              <div className="profile-avatar-wrap">
+                <div className="profile-avatar-ring">
+                  <img src={c.image} alt={c.name} className="profile-avatar" />
+                </div>
+                {c.available && (
+                  <span className="profile-online-dot" title="Available now" />
+                )}
               </div>
 
-              <span className="badge rounded-pill px-3 py-2 mb-3" style={badgeStyle}>
-                {available ? "✓ Available Now" : "Currently Unavailable"}
+              {/* Category pill */}
+              <span className="profile-cat-tag" style={{ background: cat.bg, color: cat.color }}>
+                {c.category}
               </span>
 
-              <div className="text-start small text-muted mb-3">
-                <div className="mb-1">📍 {location}</div>
-                <div className="mb-1">💼 {experience} experience</div>
-                <div>💰 {hourlyRate}</div>
+              {/* Name */}
+              <h4 className="profile-name">{c.name}</h4>
+
+              {/* Rating */}
+              <div className="profile-rating-row">
+                <Star size={13} fill="#f59e0b" color="#f59e0b" />
+                <strong>{c.rating}</strong>
+                <span className="profile-rating-count">({c.reviews} reviews)</span>
               </div>
 
-              <button className="btn w-100 fw-semibold rounded-3" style={{ backgroundColor: "#1a73e8", color: "#fff" }}>
-                📩 Contact {name.split(" ")[0]}
+              {/* Availability */}
+              <span className={`profile-avail-pill${c.available ? " avail" : " busy"}`}>
+                {c.available ? "✓ Available Now" : "Currently Unavailable"}
+              </span>
+
+              {/* ── Inline trust signals — no box ── */}
+              <ul className="profile-trust-list">
+                {trustSignals(c).map(({ Icon, label, color }) => (
+                  <li key={label} className="profile-trust-item">
+                    <Icon size={12} color={color} strokeWidth={2.5} />
+                    <span>{label}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Divider */}
+              <div className="profile-sidebar-divider" />
+
+              {/* Meta */}
+              <div className="profile-meta-list">
+                {[
+                  { Icon: MapPin,     text: c.location },
+                  { Icon: DollarSign, text: c.hourlyRate + " / hour" },
+                ].map(({ Icon, text }) => (
+                  <div key={text} className="profile-meta-item">
+                    <div className="profile-meta-icon">
+                      <Icon size={12} color="var(--blue)" />
+                    </div>
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Actions */}
+              <button className="profile-btn-primary">
+                <MessageCircle size={14} /> Contact {c.name.split(" ")[0]}
               </button>
-              <button className="btn btn-outline-secondary w-100 mt-2 rounded-3 small">
-                📅 Book a Session
+              <button className="profile-btn-outline">
+                <Calendar size={14} /> Book a Session
               </button>
+
             </div>
           </div>
 
-          {/* Right: Details */}
+          {/* ── Detail sections ── */}
           <div className="col-lg-8">
-            <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
-              <h5 className="fw-bold mb-3" style={{ color: "#1a2a4a" }}>About</h5>
-              <p className="text-muted">{bio}</p>
-            </div>
 
-            <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
-              <h5 className="fw-bold mb-3" style={{ color: "#1a2a4a" }}>Skills & Expertise</h5>
-              <div className="d-flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="badge rounded-pill px-3 py-2"
-                    style={{ backgroundColor: "#e8f0fe", color: "#1a73e8", fontWeight: 500 }}
-                  >
-                    ✓ {skill}
+            {/* About */}
+            <SectionCard
+              icon={<CheckCircle2 size={15} color="var(--blue)" />}
+              title="About"
+            >
+              <p className="profile-bio">{c.bio}</p>
+            </SectionCard>
+
+            {/* Skills — max 3 */}
+            <SectionCard
+              icon={<Award size={15} color="var(--blue)" />}
+              title="Skills & Expertise"
+            >
+              <div className="profile-skills">
+                {c.skills.slice(0, 3).map((s) => (
+                  <span key={s} className="profile-skill-tag">
+                    <CheckCircle2 size={10} strokeWidth={2.5} /> {s}
                   </span>
                 ))}
               </div>
-            </div>
+            </SectionCard>
 
-            <div className="card border-0 shadow-sm rounded-4 p-4 mb-4">
-              <h5 className="fw-bold mb-3" style={{ color: "#1a2a4a" }}>Availability Schedule</h5>
-              <div className="row g-2">
-                {schedule.map((slot, i) => (
-                  <div className="col-md-6" key={i}>
-                    <div className="p-3 rounded-3 small fw-medium" style={{ backgroundColor: "#e8f0fe", color: "#1a2a4a" }}>
-                      🕐 {slot}
-                    </div>
+            {/* Availability */}
+            <SectionCard
+              icon={<Clock size={15} color="var(--blue)" />}
+              title="Availability Schedule"
+            >
+              <div className="profile-schedule-grid">
+                {c.schedule.map((slot, i) => (
+                  <div key={i} className="profile-schedule-slot">
+                    <Clock size={11} color="var(--blue)" />
+                    <span>{slot}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </SectionCard>
 
-            <div className="card border-0 shadow-sm rounded-4 p-4">
-              <h5 className="fw-bold mb-3" style={{ color: "#1a2a4a" }}>
-                Client Reviews ({reviewsList.length})
-              </h5>
-              <div className="d-flex flex-column gap-3">
-                {reviewsList.map((review, i) => (
-                  <div
-                    key={i}
-                    className="p-3 rounded-3"
-                    style={{ backgroundColor: "#f8faff", border: "1px solid #e8f0fe" }}
-                  >
-                    <div className="d-flex justify-content-between align-items-center mb-1">
-                      <span className="fw-semibold small" style={{ color: "#1a2a4a" }}>{review.author}</span>
-                      <span style={{ color: "#f4b400" }}>{"★".repeat(review.stars)}</span>
+            {/* Reviews */}
+            <SectionCard
+              icon={<Star size={15} color="var(--blue)" />}
+              title={`Client Reviews (${c.reviewsList.length})`}
+            >
+              <div className="profile-reviews">
+                {c.reviewsList.map((r, i) => (
+                  <div key={i} className="profile-review-card">
+                    <div className="profile-review-header">
+                      <div className="profile-review-avatar">
+                        {r.author.charAt(0)}
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div className="profile-review-author">{r.author}</div>
+                        <div className="profile-review-stars">
+                          {Array.from({ length: r.stars }).map((_, j) => (
+                            <Star key={j} size={10} fill="#f59e0b" color="#f59e0b" />
+                          ))}
+                          {Array.from({ length: 5 - r.stars }).map((_, j) => (
+                            <Star key={`e${j}`} size={10} fill="none" color="#e2e8f0" />
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-muted small mb-0">"{review.text}"</p>
+                    <p className="profile-review-text">"{r.text}"</p>
                   </div>
                 ))}
               </div>
-            </div>
+            </SectionCard>
+
           </div>
         </div>
       </div>

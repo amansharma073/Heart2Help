@@ -10,7 +10,7 @@ const caretakers = [
     experience: "8 years",
     location: "New York, NY",
     hourlyRate: "$22/hr",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Compassionate and experienced caregiver specializing in elderly care. Certified in CPR and first aid with a background in nursing assistance.",
     schedule: ["Mon–Fri: 8am–6pm", "Weekends: Available on request"],
     reviewsList: [
@@ -29,7 +29,7 @@ const caretakers = [
     experience: "5 years",
     location: "Los Angeles, CA",
     hourlyRate: "$18/hr",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Energetic and nurturing childcare provider with a degree in Early Childhood Education. Loves arts, crafts, and outdoor activities.",
     schedule: ["Mon–Sat: 7am–7pm"],
     reviewsList: [
@@ -48,7 +48,7 @@ const caretakers = [
     experience: "4 years",
     location: "Chicago, IL",
     hourlyRate: "$15/hr",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Animal lover and certified pet care specialist. Experienced with dogs, cats, and small animals. Treats every pet like her own.",
     schedule: ["Tue–Sun: 9am–5pm"],
     reviewsList: [
@@ -67,7 +67,7 @@ const caretakers = [
     experience: "10 years",
     location: "Houston, TX",
     hourlyRate: "$25/hr",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Dedicated senior care specialist with a decade of experience. Trained in dementia and Alzheimer's care with a gentle, patient approach.",
     schedule: ["Mon–Fri: 9am–5pm", "Sat: 10am–3pm"],
     reviewsList: [
@@ -86,7 +86,7 @@ const caretakers = [
     experience: "6 years",
     location: "Phoenix, AZ",
     hourlyRate: "$20/hr",
-    image: "https://randomuser.me/api/portraits/women/26.jpg",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Warm and dedicated nanny with experience caring for children ages 1–12. Bilingual (English/Hindi) and passionate about child development.",
     schedule: ["Mon–Fri: 7am–8pm"],
     reviewsList: [
@@ -105,7 +105,7 @@ const caretakers = [
     experience: "7 years",
     location: "Seattle, WA",
     hourlyRate: "$17/hr",
-    image: "https://randomuser.me/api/portraits/men/54.jpg",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&h=400&fit=crop&crop=faces&auto=format&q=85",
     bio: "Certified dog trainer and pet care expert. Experienced with all breeds and sizes. Offers boarding, training, and daily walks.",
     schedule: ["Mon–Sun: 8am–8pm"],
     reviewsList: [
