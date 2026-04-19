@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# 💙 Heart2Help — Caretaker Booking Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, premium SaaS-level UI for a caregiving platform that connects families with verified caretakers for elderly care, childcare, and pet care.
 
-## Available Scripts
+Built as a frontend portfolio project with a focus on clean UI/UX, responsive design, and polished micro-interactions.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🌐 Live Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> [View Live Demo](#) ← _Replace with your deployed URL (Vercel / Netlify)_
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📸 Screenshots
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Light Mode | Dark Mode |
+|---|---|
+| ![Light Mode](./screenshots/light.png) | ![Dark Mode](./screenshots/dark.png) |
 
-### `npm run build`
+> _Add screenshots to a `/screenshots` folder in the project root_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✨ Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 🌙 **Dark / Light Mode** — System preference detection + manual toggle with smooth transitions
+- 🔍 **Smart Search System** — Multi-field search bar (location + service type) with focus states and animations
+- 👤 **Caretaker Cards** — Rich profile cards with ratings, skills, availability badges, and hover interactions
+- 📋 **Caretaker Listings Page** — Filter sidebar (category, availability, rating slider) + sort dropdown
+- 👤 **Caretaker Profile Page** — Detailed profile with trust signals, reviews, schedule, and booking actions
+- 🔐 **Auth Modal** — Segmented role toggle (User / Caretaker), inline validation, loading state
+- 📱 **Fully Responsive** — Mobile-first layout, stacked navigation, touch-friendly inputs
+- ⚡ **Micro-interactions** — Hover lifts, shimmer buttons, scroll reveal animations, skeleton loaders
+- 🎨 **Premium Design System** — Consistent spacing scale, CSS custom properties, soft shadows
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🛠 Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Technology | Purpose |
+|---|---|
+| **React.js** | Component-based UI |
+| **React Router v7** | Client-side routing |
+| **Bootstrap 5** | Grid system and layout utilities |
+| **Lucide React** | Icon library |
+| **Custom CSS** | Design system, dark mode, animations |
+| **JavaScript (ES6+)** | Logic, state management, hooks |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 Folder Structure
 
-## Learn More
+```
+heart2help/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx          # Navigation + dark mode toggle + auth modal trigger
+│   │   ├── AuthModal.jsx       # Login / register modal with role switcher
+│   │   ├── CaretakerCard.jsx   # Reusable caretaker card component
+│   │   ├── HeroSearch.jsx      # Multi-field hero search bar
+│   │   └── Footer.jsx          # Footer with newsletter signup
+│   ├── context/
+│   │   └── ThemeContext.jsx    # Dark/light mode state + localStorage persistence
+│   ├── data/
+│   │   └── caretakers.js       # Mock caretaker data
+│   ├── pages/
+│   │   ├── Home.jsx            # Landing page (hero, stats, services, CTA)
+│   │   ├── Listings.jsx        # Browse + filter caretakers
+│   │   └── Profile.jsx         # Individual caretaker profile
+│   ├── App.jsx                 # Root component + routes
+│   ├── index.js                # Entry point + scroll reveal observer
+│   └── index.css               # Global styles + design tokens + dark mode
+└── package.json
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Getting Started
 
-### Code Splitting
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Node.js `v16+`
+- npm or yarn
 
-### Analyzing the Bundle Size
+### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/heart2help.git
 
-### Making a Progressive Web App
+# 2. Navigate into the project
+cd heart2help
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# 3. Install dependencies
+npm install
 
-### Advanced Configuration
+# 4. Start the development server
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The app will open at `http://localhost:3000`
 
-### Deployment
+### Build for Production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm run build
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎨 Design Highlights
+
+- **Color System** — CSS custom properties (`--blue`, `--bg`, `--surface`, `--text`) that swap automatically in dark mode
+- **Spacing Scale** — Consistent 8px base unit (`--sp-1` through `--sp-7`)
+- **Animations** — `fadeUp`, `shimmer`, `pulse`, `heartBeat` keyframes for premium feel
+- **Dark Mode** — `[data-theme="dark"]` on `<html>` with `localStorage` persistence and `prefers-color-scheme` auto-detection
+
+---
+
+## 👨‍💻 Author
+
+**Aman Sharma**
+
+- GitHub: [@your-username](https://github.com/your-username)
+- LinkedIn: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
+- Portfolio: [your-portfolio.com](#)
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+> Built with ❤️ as a frontend portfolio project
