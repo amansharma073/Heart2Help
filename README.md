@@ -37,6 +37,9 @@ Built as a frontend portfolio project with a focus on clean UI/UX, responsive de
 ---
 
 ## 🛠 Tech Stack
+![React](https://img.shields.io/badge/React-61DAFB?logo=react)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-38B2AC?logo=tailwind-css)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow?logo=javascript)
 
 | Technology | Purpose |
 |---|---|
