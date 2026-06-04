@@ -8,7 +8,7 @@ Built as a frontend portfolio project with a focus on clean UI/UX, responsive de
 
 ## 🌐 Live Demo
 
-> [View Live Demo](https://heart2-help-rust.vercel.app) ← _Replace with your deployed URL (Vercel / Netlify)_
+> [View Live Demo](https://heart2-help-rust.vercel.app) 
 
 ---
 
@@ -18,7 +18,7 @@ Built as a frontend portfolio project with a focus on clean UI/UX, responsive de
 |---|---|
 | ![Light Mode](./screenshots/light.png) | ![Dark Mode](./screenshots/dark.png) |
 
-> _Add screenshots to a `/screenshots` folder in the project root_
+
 
 ---
 
